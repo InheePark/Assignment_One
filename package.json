@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "name": "assignment_one",
+  "version": "1.0.0",
+  "description": "Assignment 1 portfolio site creation",
+  "main": "server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InheePark/Assignment_One.git"
+  },
+  "keywords": [
+    "Express",
+    "EJS",
+    "NodeJS",
+    "MEAN"
+  ],
+  "author": "Inhee Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/InheePark/Assignment_One/issues"
+  },
+  "homepage": "https://github.com/InheePark/Assignment_One#readme"
+}
