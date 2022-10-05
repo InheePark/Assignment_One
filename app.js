@@ -1,12 +1,15 @@
+// dependencies (modules) instantiation
+// we import modules from node
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// instantiating routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+// express set up
 var app = express();
 
 // view engine setup
@@ -19,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routers set up
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
