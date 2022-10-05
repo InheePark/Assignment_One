@@ -16,9 +16,11 @@ router.get('/', function(req, res, next) {
 });
 
 // we can create different server http requests with different paths
-// very mdoular 
+// very modular 
 router.get('/views/about.ejs', function(req, res, next) {
+  // the path must be end of the url
   res.render('about');
+  // specify the name of the ejs file you want to render
 })
 
 module.exports = router;
