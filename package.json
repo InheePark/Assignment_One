@@ -1,15 +1,21 @@
 {
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "express": "^4.18.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   },
   "name": "assignment_one",
   "version": "1.0.0",
   "description": "Assignment 1 portfolio site creation",
-  "main": "server.js",
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/InheePark/Assignment_One.git"
