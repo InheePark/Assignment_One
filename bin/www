@@ -17,17 +17,20 @@ app.set('port', port);
 
 /**
  * Create HTTP server.
+ * need a http module object for http request (http)
+ * need an app object to request of (app)
  */
 
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
+ * listen on the server object created
  */
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on('error', onError); // error handling, will trigger onError function
+server.on('listening', onListening); // when requesting, onListening function trigger
 
 /**
  * Normalize a port into a number, string, or false.
@@ -87,4 +90,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log(`${app} listening to http://localhost:${port}`);
 }
