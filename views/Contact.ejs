@@ -8,19 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/Contact.css">
 </head>
 <body>
-    <header>
-        <div class = "navigation-bar">
-            <div id = "navigation-container">
-                <img class = "logo" src="/images/Logo.png">
-                <ul class="menu">
-                    <li><a href="/views/About.ejs">About Page</a></li>
-                    <li><a href="/">Home Page</a></li>
-                    <li><a href="/views/Projects.ejs">Project Page</a></li>
-                    <li><a href="/views/Service.ejs">Service Page</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <% include partials/header.ejs %>
     <main>
         <br>
         <br>
@@ -47,6 +35,6 @@
             </fieldset>
         </form>
     </main>
-    <footer></footer>
+    <% include partials/footer.ejs %>
 </body>
 </html>

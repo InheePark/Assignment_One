@@ -8,19 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/Project.css">
 </head>
 <body>
-    <header>
-        <div class = "navigation-bar">
-            <div id = "navigation-container">
-                <img class = "logo" src="/images/Logo.png">
-                <ul class="menu">
-                    <li><a href="/views/About.ejs">About Page</a></li>
-                    <li><a href="/views/Contact.ejs">Contact Page</a></li>
-                    <li><a href="/">Home Page</a></li>
-                    <li><a href="/views/Service.ejs">Service Page</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <% include partials/header.ejs %>
     <main>
         <br>
         <h1>
@@ -74,6 +62,6 @@
             <p>HTML5, CSS3, JavaScript</p>
         </div>
     </main>
-    <footer></footer>
+    <% include partials/footer.ejs %>
 </body>
 </html>

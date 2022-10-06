@@ -8,20 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/Home.css">
 </head>
 <body>
-    <header>
-        <div class = "navigation-bar">
-            <div id = "navigation-container">
-                <img class = "logo" src="/images/Logo.png">
-                <ul class="menu">
-                    <li><a href="/">Home Page</a></li>
-                    <li><a href="/views/About.ejs">About Page</a></li>
-                    <li><a href="/views/Contact.ejs">Contact Page</a></li>
-                    <li><a href="/views/Projects.ejs">Project Page</a></li>
-                    <li><a href="/views/Service.ejs">Service Page</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <% include partials/header.ejs %>
     <main>
         <div class="welcome-section">
             <br>
@@ -50,12 +37,6 @@
             <button><a href="/views/About.ejs">More about me</a></button> <button><a href="/views/Contact.ejs">Let's connect!</a></button> <button><a href="/views/Projects.ejs">Past projects</a></button> <button><a href="/views/Service.ejs">Services i provide</a></button>
         </div>
     </main>
-    <footer>
-        <p style="text-align: center;">
-            Made with love <br>
-            COMP 229 Section 005 Fall 2022 <br>
-            301162514 Inhee Park. <br>
-        </p>
-    </footer>
+    <% include partials/footer.ejs %>
 </body>
 </html>
