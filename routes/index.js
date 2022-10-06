@@ -10,7 +10,7 @@ GET http request root
 // url: http://localhost:3000/
 */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('Home', { title: 'Express' });
   // response will be rendering index.ejs of views floder
   // we can change render page to our custom page
 });
@@ -21,6 +21,18 @@ router.get('/views/about.ejs', function(req, res, next) {
   // the path must be end of the url
   res.render('about');
   // specify the name of the ejs file you want to render
+})
+
+router.get('/views/Contact.ejs', function(req, res, next) {
+  res.render('Contact');
+})
+
+router.get('/views/Projects.ejs', function(req, res, next) {
+  res.render('Projects');
+})
+
+router.get('/views/Service.ejs', function(req, res, next) {
+  res.render('Service');
 })
 
 module.exports = router;
