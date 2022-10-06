@@ -13,8 +13,10 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// ejs = a javascript file that converts to html 
+app.set('views', path.join(__dirname, 'views')); 
+// we are setting the views to the path specified
+app.set('view engine', 'ejs'); // the view engine is set to ejs
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -42,4 +44,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// this exports code
+// allows this express configuration file
+// to be exported
 module.exports = app;
