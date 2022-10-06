@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Contact Page</title>
+    <link rel="stylesheet" href="/stylesheets/Contact.css">
+</head>
+<body>
+    <header>
+        <div class = "navigation-bar">
+            <div id = "navigation-container">
+                <img class = "logo" src="/images/Logo.png">
+                <ul class="menu">
+                    <li><a href="/views/About.ejs">About Page</a></li>
+                    <li><a href="/">Home Page</a></li>
+                    <li><a href="/views/Projects.ejs">Project Page</a></li>
+                    <li><a href="/views/Service.ejs">Service Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <br>
+        <br>
+        <form action="/">
+            <fieldset>
+                <legend>Contact Form</legend>
+                <label for="firstName">First Name: </label> 
+                <input type="text" placeholder="john" name="firstName" id="firstName"> 
+                <label for="lastName">Last Name: </label>
+                <input type="text" placeholder="doe" name="lastName" id="lastName"> 
+                <br>
+                <br>
+                <label for="emailAddress">Email Address: </label> 
+                <input type="email" name="emailAddress" id="emailAddress" placeholder="johndoe@email.com"> 
+                <label for="telephoneNum">Phone Number: </label>
+                <input type="tel" name="telephoneNum" id="telephoneNum" placeholder="111-111-1111">
+                <br>
+                <br>
+                <label for="textArea">Say hi!</label> <br>
+                <textarea name="textArea" id="textArea" cols="50" rows="20">Hi!</textarea>
+                <br>
+                <br>
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>
