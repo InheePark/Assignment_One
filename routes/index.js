@@ -35,4 +35,7 @@ router.get('/views/Service.ejs', function(req, res, next) {
   res.render('Service');
 })
 
+router.get('/views/Inventory.ejs', function(req, res, next) {
+  res.render('Inventory');
+})
 module.exports = router;

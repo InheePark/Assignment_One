@@ -1,0 +1,1 @@
+let atlasDB = "mongodb+srv://dbuser:dbuser@cluster005.asvptdk.mongodb.net/?retryWrites=true&w=majority";
