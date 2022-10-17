@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add / Edit</title>
+    <link rel="stylesheet" href="/stylesheets/Inventory.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+</head>
+<body>
+    <%- include ../partials/header.ejs %>
+    <main>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="offset-md-3 col-md-6">
+                    <h1><%= title %></h1>
+        
+                    <form class="form" method="POST">
+                        <div class="form-group">
+                            <input type="hidden"
+                                name="id"
+                                value="<%= item._id %>"
+                            >
+                            <label for="itemTextField">Name</label>
+                            <input type="text" class="form-control"
+                                id="NameTextField"
+                                placeholder="Enter the Item Name"
+                                name="Name" 
+                                value="<%= item.Name %>"
+                                required>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="NumberTextField">Number</label>
+                            <input type="number" class="form-control"
+                            id="NumberTextField"
+                            placeholder="00"
+                            name="Number" 
+                            value="<%= item.Number %>"
+                            required>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="EmailTextField">Email</label>
+                            <input type="text" class="form-control"
+                            id="EmailTextField"
+                            placeholder="Enter email"
+                            name="Email" 
+                            value="<%= item.Email %>"
+                            >
+                        </div>
+                        <br />        
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-edit"></i> 
+                            Submit
+                        </button>
+                        
+                        <a href="/contacts/list" class="btn btn-warning">
+                            <i class="fas fa-undo"></i> 
+                            Cancel
+                        </a>
+        
+                    </form>
+                </div>
+        
+            </div>
+        </div>
+        
+    </main>
+    <%- include ../partials/footer.ejs %>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
