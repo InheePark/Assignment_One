@@ -3,39 +3,27 @@
 // app.get('/')
 var express = require('express');
 var router = express.Router();
+let indexController = require('../controllers/index.controller');
 
 /* 
 GET home page. 
 GET http request root
 // url: http://localhost:3000/
 */
-router.get('/', function(req, res, next) {
-  res.render('Home', { title: 'Express' });
-  // response will be rendering index.ejs of views floder
-  // we can change render page to our custom page
-});
+router.get('/', indexController.home);
 
 // we can create different server http requests with different paths
 // very modular 
-router.get('/views/about.ejs', function(req, res, next) {
-  // the path must be end of the url
-  res.render('about');
-  // specify the name of the ejs file you want to render
-})
+router.get('/views/about.ejs', indexController.about);
 
-router.get('/views/Contact.ejs', function(req, res, next) {
-  res.render('Contact');
-})
+router.get('/views/Contact.ejs', indexController.contact);
 
-router.get('/views/Projects.ejs', function(req, res, next) {
-  res.render('Projects');
-})
+router.get('/views/Projects.ejs', indexController.projects);
 
-router.get('/views/Service.ejs', function(req, res, next) {
-  res.render('Service');
-})
+router.get('/views/Service.ejs', indexController.service);
 
 router.get('/views/Inventory.ejs', function(req, res, next) {
   res.render('Inventory');
 })
+
 module.exports = router;
