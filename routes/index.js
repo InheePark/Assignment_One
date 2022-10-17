@@ -22,8 +22,6 @@ router.get('/views/Projects.ejs', indexController.projects);
 
 router.get('/views/Service.ejs', indexController.service);
 
-router.get('/views/Inventory.ejs', function(req, res, next) {
-  res.render('Inventory');
-})
+
 
 module.exports = router;
