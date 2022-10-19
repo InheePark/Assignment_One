@@ -5,6 +5,7 @@
  */
 var dbConfig = require('./config/db');
 var app = require('./config/app');
+var passportConfig = require('./config/passport');
 var debug = require('debug')('assignmentone:server');
 var http = require('http');
 
@@ -27,7 +28,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  * listen on the server object created
  */
-
+let passport = passportConfig();
 server.listen(port);
 server.on('error', onError); // error handling, will trigger onError function
 server.on('listening', onListening); // when requesting, onListening function trigger
