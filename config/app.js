@@ -5,6 +5,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var flash = require('connect-flash');
+var passport = require('passport');
 
 // instantiating routers
 var indexRouter = require('../routes/index');
@@ -13,6 +16,12 @@ var inventoryRouter = require('../routes/inventory.router');
 var contactsRouter = require('../routes/contacts.router');
 // express set up
 var app = express();
+
+app.use(session({
+  saveUninitialized: true, 
+  resave: true, 
+  secret: "sessionSecret"
+}));
 
 // view engine setup
 // ejs = a javascript file that converts to html 
@@ -26,6 +35,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routers set up
 app.use('/', indexRouter);
