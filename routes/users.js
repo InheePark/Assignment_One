@@ -10,4 +10,12 @@ router.get('/', userController.user);
 router.get('/signup', userController.renderSignup);
 router.post('/signup', userController.signup);
 
+// router for sign in page
+router.get('/signin', userController.renderSignin);
+router.post('/signin', userController.signin);
+
+// sign out
+router.get('/signout', userController.signout);
+
+
 module.exports = router;
