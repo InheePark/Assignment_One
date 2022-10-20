@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in Page</title>
+    <link rel="stylesheet" href="/stylesheets/Inventory.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+</head>
+<body>
+    <%- include ../partials/header.ejs %>
+    <main>
+        <br>
+        <div class="container">
+            <div class="row">
+        
+                <div class="offset-md-3 col-md-3">
+                    <h1><%= title %></h1>
+                    <% for(var i in messages) { %>
+                        <div class="flash"><%= messages[i] %></div>
+                    <% } %>
+                    <form action="/users/signin" method="post">
+                        <div class="form-group">
+                            <label>Username:</label>
+                            <input type="text" name="username" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password:</label>
+                            <input type="password" name="password" class="form-control"/>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input class="btn btn-primary" type="submit" value="Sign In" />                    
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <a href="/users/signup" style="text-decoration: none">                
+                                <i class="fas fa-user-plus"></i> 
+                                Signup
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                                
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        var getTitle = "<%= title %>"
+    </script>
+    <%- include ../partials/footer.ejs %>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

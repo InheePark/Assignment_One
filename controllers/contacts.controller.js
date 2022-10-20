@@ -13,7 +13,8 @@ exports.contactsList = function(req, res, next) {
         {
             res.render('contacts/list', {
                 title: 'Contacts List', 
-                ContactsList: contactsList
+                ContactsList: contactsList,  
+                username: req.user ? req.user.username : ''
             })            
         }
     }).sort({"Name": 1});
@@ -33,7 +34,8 @@ module.exports.displayEditPage = (req, res, next) => {
             //show the edit view
             res.render('contacts/add_edit', {
                 title: 'Edit Item', 
-                item: itemToEdit
+                item: itemToEdit, 
+                username: req.user ? req.user.username : ''
             })
         }
     }).sort({"Name": 1});
@@ -73,7 +75,8 @@ module.exports.displayAddPage = (req, res, next) => {
 
     res.render('contacts/add_edit', {
         title: 'Add a new Item',
-        item: newItem
+        item: newItem, 
+        username: req.user ? req.user.username : ''
     });          
 }
 
