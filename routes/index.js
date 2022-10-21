@@ -14,7 +14,7 @@ router.get('/', indexController.home);
 
 // we can create different server http requests with different paths
 // very modular 
-router.get('/views/about.ejs', indexController.about);
+router.get('/views/About.ejs', indexController.about);
 
 router.get('/views/Contact.ejs', indexController.contact);
 
