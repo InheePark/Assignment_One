@@ -1,3 +1,9 @@
+/*
+router for inventory views
+Inhee Park (301162514)
+October 21, 2022
+*/
+
 var express = require('express');
 var router = express.Router();
 let inventoryController = require('../controllers/inventory.controller');

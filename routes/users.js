@@ -1,3 +1,9 @@
+/*
+router for login, auth views
+Inhee Park (301162514)
+October 21, 2022
+*/
+
 var express = require('express');
 var router = express.Router();
 let userController = require('../controllers/users.controller');

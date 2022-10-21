@@ -1,6 +1,13 @@
+/*
+inventory data model schema for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 let mongoose = require('mongoose');
 
-// Create a model class
+// model schema for 
+// inventory list
 let inventoryModel = mongoose.Schema(
     {
         item: String,

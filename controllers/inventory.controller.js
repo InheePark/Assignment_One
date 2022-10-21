@@ -1,6 +1,13 @@
+/*
+inventory view controller for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 // create a reference to the model
 let Inventory = require('../models/inventory.model');
 
+// render the inventory list view function
 exports.inventoryList = function(req, res, next) {  
     
     Inventory.find((err, inventoryList) => {
@@ -19,6 +26,7 @@ exports.inventoryList = function(req, res, next) {
     });
 }
 
+// display the edit page of the inventory list
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
 
@@ -39,7 +47,7 @@ module.exports.displayEditPage = (req, res, next) => {
     });
 }
 
-
+// assign value of the editted value to the inventory list 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id
 
@@ -73,7 +81,7 @@ module.exports.processEditPage = (req, res, next) => {
     });
 }
 
-
+// display add view to the app
 module.exports.displayAddPage = (req, res, next) => {
     let newItem = Inventory();
 
@@ -83,6 +91,7 @@ module.exports.displayAddPage = (req, res, next) => {
     })          
 }
 
+// assign value of added values to the inventory list
 module.exports.processAddPage = (req, res, next) => {
     let newItem = Inventory({
         _id: req.body.id,
@@ -113,8 +122,7 @@ module.exports.processAddPage = (req, res, next) => {
 
 }
 
-
-
+// delete the specified record
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 

@@ -1,7 +1,14 @@
+/*
+router for business contacts views
+Inhee Park (301162514)
+October 21, 2022
+*/
+
 var express = require('express');
 var router = express.Router();
 let contactsController = require('../controllers/contacts.controller');
 
+// function for authenticating
 function requireAuth(req, res, next){
     if(!req.isAuthenticated()){
         req.session.url = req.originalUrl;
@@ -10,7 +17,7 @@ function requireAuth(req, res, next){
     next();
 }
 
-/* GET users listing. */
+/* GET business contacts listing. */
 router.get('/list', requireAuth, contactsController.contactsList);
 
 // Routers for edit

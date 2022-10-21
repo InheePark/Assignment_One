@@ -1,7 +1,14 @@
+/*
+login, auth info schema for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 let mongoose = require('mongoose');
 let crypto = require('crypto');
 let Schema = mongoose.Schema;
 
+// user login, auth data model details
 let UserSchema = mongoose.Schema(
     {
         firstName: String,
@@ -59,14 +66,20 @@ UserSchema.pre('save', function(next) {
     next();
 });
 
+// crypto for password details
+// extra details
 UserSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 
+// authenticating password after 
+// crypto
 UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);
 };
 
+
+// finding unique username when signin, signup
 UserSchema.statics.findUniqueUsername = function(username, suffix,
     callback) {
     var possibleUsername = username + (suffix || '');
