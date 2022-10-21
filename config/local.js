@@ -1,3 +1,9 @@
+/*
+local.js (authenticate) for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');

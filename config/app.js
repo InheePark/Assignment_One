@@ -1,3 +1,9 @@
+/*
+app.js file for app
+inhee park (301162514)
+October 21st, 2022
+*/
+
 // dependencies (modules) instantiation
 // we import modules from node
 var createError = require('http-errors');

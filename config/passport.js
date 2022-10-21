@@ -1,3 +1,9 @@
+/*
+passport.js (serialize) for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 const passport = require('passport');
 
 module.exports = function() {

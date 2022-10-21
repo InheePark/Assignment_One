@@ -1,3 +1,9 @@
+/*
+auth, login controller for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 let User = require('../models/user');
 let passport = require('passport');
 
@@ -8,6 +14,7 @@ exports.user = function(req, res, next){
     });
 }
 
+// error function for login
 function getErrorMessage(err){
     console.log('=====> Error: ' + err);
     let message = '';
@@ -30,6 +37,7 @@ function getErrorMessage(err){
     return message;
 };
 
+// controller for signup view
 module.exports.renderSignup = function(req, res, next){
     if(!req.user) {
         let newUser = User();
@@ -44,6 +52,7 @@ module.exports.renderSignup = function(req, res, next){
     }
 };
 
+// controller for singin vew
 module.exports.renderSignin = function(req, res, next) {
   if (!req.user) {
     res.render('auth/signin', {
@@ -56,6 +65,7 @@ module.exports.renderSignin = function(req, res, next) {
   }
 };
 
+// signup function for signup view
 module.exports.signup = function(req, res, next) {
     if (!req.user && req.body.password === req.body.password_confirm) {
       console.log(req.body);
@@ -85,7 +95,8 @@ module.exports.signup = function(req, res, next) {
       return res.redirect('/');
     }
 };
-  
+ 
+// function for signout view
 module.exports.signout = function(req, res, next) {
     req.logout(function(err) {
       if(err){return next(err);}
@@ -93,6 +104,7 @@ module.exports.signout = function(req, res, next) {
     });
 };
   
+// function for signin view
 module.exports.signin = function(req, res, next){
     passport.authenticate('local', {   
       successRedirect: req.session.url || '/',

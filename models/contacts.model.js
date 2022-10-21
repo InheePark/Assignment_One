@@ -1,6 +1,13 @@
+/*
+Business Contacts data model Schema for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 let mongoose = require('mongoose');
 
-// Create a model class
+// model shema for
+// user business contacts lists
 let contactsModel = mongoose.Schema(
     {
         Name: String,

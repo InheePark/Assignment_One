@@ -1,6 +1,13 @@
+/*
+contacts views controller for app
+Inhee Park (301162514)
+October 21st, 2022
+*/
+
 // create a reference to the model
 let Contacts = require('../models/contacts.model');
 
+// display the contacts page
 exports.contactsList = function(req, res, next) {  
     
     Contacts.find((err, contactsList) => {
@@ -20,6 +27,7 @@ exports.contactsList = function(req, res, next) {
     }).sort({"Name": 1});
 }
 
+// display the the edit page function
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
 
@@ -41,7 +49,8 @@ module.exports.displayEditPage = (req, res, next) => {
     }).sort({"Name": 1});
 }
 
-
+// function for assigning values of the editted value
+// to the contacts 
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id
 
@@ -69,7 +78,7 @@ module.exports.processEditPage = (req, res, next) => {
     }).sort({"Name": 1});
 }
 
-
+// function for displaying the add page for contacts
 module.exports.displayAddPage = (req, res, next) => {
     let newItem = Contacts();
 
@@ -80,6 +89,7 @@ module.exports.displayAddPage = (req, res, next) => {
     });          
 }
 
+// function for adding new contacts
 module.exports.processAddPage = (req, res, next) => {
     let newItem = Contacts({
         _id: req.body.id,
@@ -105,7 +115,7 @@ module.exports.processAddPage = (req, res, next) => {
 }
 
 
-
+// delete contacts lists function
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
 
