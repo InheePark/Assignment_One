@@ -8,16 +8,21 @@ October 21st, 2022
 let Inventory = require('../models/inventory.model');
 
 // render the inventory list view function
+// we export this function 
 exports.inventoryList = function(req, res, next) {  
     
     Inventory.find((err, inventoryList) => {
-        // console.log(inventoryList);
+        // arrow function for finding data model 
         if(err)
         {
+            // err -> when error occrus for .find 
             return console.error(err);
         }
         else
         {
+            // inventoryList for the documents found in db 
+            // inventoryList object will follow the Schema coded inside 
+            // Inventory referenced
             res.render('inventory/list', {
                 title: 'Inventory List', 
                 InventoryList: inventoryList

@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 var dbConfig = require('./config/db');
+// using the db connection and instantiating to the server
+
 var app = require('./config/app');
 var passportConfig = require('./config/passport');
 var debug = require('debug')('assignmentone:server');
@@ -13,6 +15,10 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 var db = dbConfig();
+// we use the dbConfig file
+// the dbCongif uses ./cofig/db 
+// and uses the exportable function inside the file 
+
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 

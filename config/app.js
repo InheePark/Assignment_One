@@ -20,7 +20,11 @@ var passport = require('passport');
 // instantiating routers
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
+
 var inventoryRouter = require('../routes/inventory.router');
+// instantiating the inventory list routers
+
+
 var contactsRouter = require('../routes/contacts.router');
 // express set up
 var app = express();
@@ -52,7 +56,10 @@ app.use(passport.session());
 // routers set up
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/inventory', inventoryRouter);
+// setting the instantiated routers to a views 
+
 app.use('/contacts', contactsRouter);
 
 // catch 404 and forward to error handler
