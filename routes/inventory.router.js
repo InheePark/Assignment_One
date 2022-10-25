@@ -13,7 +13,9 @@ router.get('/list', inventoryController.inventoryList);
 
 // Routers for edit
 router.get('/edit/:id', inventoryController.displayEditPage);
+// router for edit views
 router.post('/edit/:id', inventoryController.processEditPage);
+// router for controller logic for edit
 
 
 /* GET Route for displaying the Add page - CREATE Operation */
