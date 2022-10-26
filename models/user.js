@@ -9,23 +9,32 @@ let crypto = require('crypto');
 let Schema = mongoose.Schema;
 
 // user login, auth data model details
+// schema for user signup, this will be stored in another collection
 let UserSchema = mongoose.Schema(
     {
         firstName: String,
         lastName: String,
         email: {
-            type: String,
+            type: String, // string data type
             match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
+            // match: [(regex), (error message)]
         },
         username: {
             type: String,
-            unique: true,
+            unique: true, 
+            // field must be unique in the collection
+            // 2 usernames should not be the same within the collection
             required: 'Username is required',
+            // required (should not be null)
             trim: true
+            // cut out unnecassery spaces
         },
         password: {
             type: String,
+            // string datatype
             validate: [(password) => {
+                // validate -> special conditions for password
+                // validate: [(password) => {(condition)}, (error message)]
                 return password && password.length > 6;
             }, 'Password should be longer']
         },
@@ -41,6 +50,7 @@ let UserSchema = mongoose.Schema(
         created: {
             type: Date,
             default: Date.now
+            // register the time the user has created
         }
     },
     {
@@ -48,16 +58,22 @@ let UserSchema = mongoose.Schema(
     }
 );
 
+// virtual data set
+// (schema name).virtual('(attribute name)').get((code for retrieving data)).set((setting the code))
 UserSchema.virtual('fullName')
 .get(function() {
+    // return the data we want to manipulate
     return this.firstName + ' ' + this.lastName;
 })
 .set(function(fullName) {
+    // setting the retrieved data from get to set
     let splitName = fullName.split(' ');
     this.firstName = splitName[0] || '';
     this.lastName = splitName[1] || '';
 });
 
+// pre middleware
+// the middleware code encrypting the password
 UserSchema.pre('save', function(next) {
     if (this.password) {
         this.salt = Buffer.from(crypto.randomBytes(16).toString('base64'), 'base64');
