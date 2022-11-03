@@ -39,6 +39,8 @@ function getErrorMessage(err){
 
 // controller for signup view
 module.exports.renderSignup = function(req, res, next){
+  // if the session is empty (no user in session)
+  // passport session
     if(!req.user) {
         let newUser = User();
 
@@ -66,12 +68,15 @@ module.exports.renderSignin = function(req, res, next) {
 };
 
 // signup function for signup view
+// process signup logic
 module.exports.signup = function(req, res, next) {
     if (!req.user && req.body.password === req.body.password_confirm) {
       console.log(req.body);
   
-      let user = new User(req.body);
-      user.provider = 'local';
+      let user = new User(req.body); 
+      // the values posted from the signup form 
+      // req.body = request view body values
+      user.provider = 'local'; // local sesion
       console.log(user);
   
       user.save((err) => {

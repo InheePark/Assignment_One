@@ -7,7 +7,10 @@ var dbConfig = require('./config/db');
 // using the db connection and instantiating to the server
 
 var app = require('./config/app');
+
+// variable for initiazling passport file
 var passportConfig = require('./config/passport');
+
 var debug = require('debug')('assignmentone:server');
 var http = require('http');
 
@@ -35,6 +38,7 @@ var server = http.createServer(app);
  * listen on the server object created
  */
 let passport = passportConfig();
+// registering passport file configuration 
 server.listen(port);
 server.on('error', onError); // error handling, will trigger onError function
 server.on('listening', onListening); // when requesting, onListening function trigger
