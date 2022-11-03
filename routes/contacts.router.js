@@ -11,6 +11,7 @@ let contactsController = require('../controllers/contacts.controller');
 // function for authenticating
 function requireAuth(req, res, next){
     if(!req.isAuthenticated()){
+        // req.isAuthenticated -> checks if session is authenticated
         req.session.url = req.originalUrl;
         return res.redirect('/users/signin');
     }
