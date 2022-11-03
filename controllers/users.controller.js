@@ -79,6 +79,7 @@ module.exports.signup = function(req, res, next) {
       user.provider = 'local'; // local sesion
       console.log(user);
   
+      // error handling 
       user.save((err) => {
         if (err) {
           let message = getErrorMessage(err);
@@ -96,7 +97,8 @@ module.exports.signup = function(req, res, next) {
           return res.redirect('/');
         });
       });
-    } else {
+    }
+    else {
       return res.redirect('/');
     }
 };

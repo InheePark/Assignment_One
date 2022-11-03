@@ -14,12 +14,16 @@ if(getTitle == "Sign-up Form"){
 
 // login password page
 function onChange(){
-    const password = document.querySelector('input[name=password]');
-    const confirm = document.querySelector('input[name=password_confirm]');
+    const password = document.querySelector('input[name=password]'); 
+    // querySelector for input[name=password]
+    const confirm = document.querySelector('input[name=password_confirm]'); 
+    // querySelector for input[name=passord_confirm]
 
     if(confirm.value === password.value){
         confirm.setCustomValidity('');
+        // continue with signup
     }else{
         confirm.setCustomValidity('Passwords do not match');
+        // break 
     }
 }
