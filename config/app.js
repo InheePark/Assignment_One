@@ -29,11 +29,7 @@ var contactsRouter = require('../routes/contacts.router');
 // express set up
 var app = express();
 
-app.use(session({
-  saveUninitialized: true, 
-  resave: true, 
-  secret: "sessionSecret"
-}));
+// for server side application, views rendering is not needed 
 
 // view engine setup
 // ejs = a javascript file that converts to html 
@@ -44,12 +40,11 @@ app.set('view engine', 'ejs'); // the view engine is set to ejs
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
 
+// flash is used for session, therefore we need not flash 
 // app using the passport module
 app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -75,7 +70,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+  res.json({
+    success: false, 
+    message: err.message 
+  });
 });
 
 // this exports code
