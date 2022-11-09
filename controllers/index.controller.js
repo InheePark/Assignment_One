@@ -6,8 +6,12 @@ October 21st, 2022
 
 // home view controller
 exports.home = function(req, res, next){
-    res.render('Home', 
-    {title: 'Home', username: req.user ? req.user.username : ''});
+    res.status(200).json(
+        {
+            success: true, 
+            message: "this is the home endpoint"
+        }
+    )
 }
 
 // about view controller

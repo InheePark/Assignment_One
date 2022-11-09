@@ -9,12 +9,12 @@ October 21st, 2022
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+// var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // importing modules for auth, login 
-var session = require('express-session');
-var flash = require('connect-flash');
+// var session = require('express-session');
+// var flash = require('connect-flash');
 var passport = require('passport');
 
 // instantiating routers
@@ -29,27 +29,11 @@ var contactsRouter = require('../routes/contacts.router');
 // express set up
 var app = express();
 
-app.use(session({
-  saveUninitialized: true, 
-  resave: true, 
-  secret: "sessionSecret"
-}));
-
-// view engine setup
-// ejs = a javascript file that converts to html 
-app.set('views', path.join(__dirname, '../views')); 
-// we are setting the views to the path specified
-app.set('view engine', 'ejs'); // the view engine is set to ejs
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
 
 // app using the passport module
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -75,7 +59,11 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
+  res.json({
+    success: false, 
+    message: err.message
+  })
 });
 
 // this exports code

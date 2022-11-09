@@ -9,7 +9,7 @@ var dbConfig = require('./config/db');
 var app = require('./config/app');
 
 // variable for initiazling passport file
-var passportConfig = require('./config/passport');
+// var passportConfig = require('./config/passport');
 
 var debug = require('debug')('assignmentone:server');
 var http = require('http');
@@ -37,7 +37,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  * listen on the server object created
  */
-let passport = passportConfig();
+// let passport = passportConfig();
 // registering passport file configuration 
 server.listen(port);
 server.on('error', onError); // error handling, will trigger onError function
