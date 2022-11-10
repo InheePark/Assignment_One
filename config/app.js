@@ -35,7 +35,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // app using the passport module
 app.use(passport.initialize());
-app.use(passport.session());
 
 // routers set up
 app.use('/', indexRouter);
@@ -48,7 +47,7 @@ app.use('/contacts', contactsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  next(createError(404, "endpoint not found"));
 });
 
 // error handler

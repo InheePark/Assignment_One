@@ -18,15 +18,7 @@ GET http request root
 */
 router.get('/', indexController.home);
 
-// we can create different server http requests with different paths
-// very modular 
-router.get('/views/About.ejs', indexController.about); // About router
 
-router.get('/views/Contact.ejs', indexController.contact); // Contacts router
-
-router.get('/views/Projects.ejs', indexController.projects); // Projects router
-
-router.get('/views/Service.ejs', indexController.service); // Service router
 
 
 

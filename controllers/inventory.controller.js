@@ -7,6 +7,19 @@ October 21st, 2022
 // create a reference to the model
 let Inventory = require('../models/inventory.model');
 
+function getErrorMessage(err) {    
+    if (err.errors) {
+        for (let errName in err.errors) {
+            if (err.errors[errName].message) return err.errors[errName].message;
+        }
+    } 
+    if (err.message) {
+        return err.message;
+    } else {
+        return 'Unknown server error';
+    }
+};
+
 // render the inventory list view function
 // we export this function 
 exports.inventoryList = function(req, res, next) {  
@@ -16,55 +29,35 @@ exports.inventoryList = function(req, res, next) {
         if(err)
         {
             // err -> when error occrus for .find 
-            return console.error(err);
+                console.error(err);
+
+                res.status(400).json({
+                    success: false, 
+                    message: getErrorMessage(err)
+                })
         }
         else
         {
-            // inventoryList for the documents found in db 
-            // inventoryList object will follow the Schema coded inside 
-            // Inventory referenced
-            res.render('inventory/list', {
-                title: 'Inventory List', 
-                InventoryList: inventoryList
-            })            
+            res.json(inventoryList);        
         }
     });
 }
 
-// display the edit page of the inventory list
-module.exports.displayEditPage = (req, res, next) => {
-    let id = req.params.id;
 
-    Inventory.findById(id, (err, itemToEdit) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            //show the edit view
-            res.render('inventory/add_edit', {
-                title: 'Edit Item', 
-                item: itemToEdit
-            })
-        }
-    });
-}
 
 // assign value of the editted value to the inventory list 
-module.exports.processEditPage = (req, res, next) => {
+module.exports.processEdit = (req, res, next) => {
     let id = req.params.id
 
     let updatedItem = Inventory({
-        _id: req.body.id,
+        _id: id,
         item: req.body.item,
         qty: req.body.qty,
         status: req.body.status,
         size : {
-            h: req.body.size_h,
-            w: req.body.size_w,
-            uom: req.body.size_uom,
+            h: req.body.size.h,
+            w: req.body.size.w,
+            uom: req.body.size.uom,
         },
         tags: req.body.tags.split(",").map(word => word.trim())
     });
@@ -74,39 +67,37 @@ module.exports.processEditPage = (req, res, next) => {
     Inventory.updateOne({_id: id}, updatedItem, (err) => {
         if(err)
         {
-            console.log(err);
-            res.end(err);
+            console.error(err);
+
+            res.status(400).json({
+                success: false, 
+                message: getErrorMessage(err)
+            })
         }
         else
         {
-            // console.log(req.body);
-            // refresh the book list
-            res.redirect('/inventory/list');
+            res.status(200).json({
+                success: true, 
+                message: "item updated successfully"
+            });
         }
     });
 }
 
 // display add view to the app
-module.exports.displayAddPage = (req, res, next) => {
-    let newItem = Inventory();
 
-    res.render('inventory/add_edit', {
-        title: 'Add a new Item',
-        item: newItem
-    })          
-}
 
 // assign value of added values to the inventory list
-module.exports.processAddPage = (req, res, next) => {
+module.exports.processAdd = (req, res, next) => {
     let newItem = Inventory({
         _id: req.body.id,
         item: req.body.item,
         qty: req.body.qty,
         status: req.body.status,
         size : {
-            h: req.body.size_h,
-            w: req.body.size_w,
-            uom: req.body.size_uom,
+            h: req.body.size.h,
+            w: req.body.size.w,
+            uom: req.body.size.uom,
         },
         tags: req.body.tags.split(",").map(word => word.trim())
     });
@@ -114,14 +105,17 @@ module.exports.processAddPage = (req, res, next) => {
     Inventory.create(newItem, (err, item) =>{
         if(err)
         {
-            console.log(err);
-            res.end(err);
+            console.error(err);
+
+            res.status(400).json({
+                success: false, 
+                message: getErrorMessage(err)
+            })
         }
         else
         {
-            // refresh the book list
             console.log(item);
-            res.redirect('/inventory/list');
+            res.status(200).json(item);
         }
     });
 
@@ -134,13 +128,19 @@ module.exports.performDelete = (req, res, next) => {
     Inventory.remove({_id: id}, (err) => {
         if(err)
         {
-            console.log(err);
-            res.end(err);
+            console.error(err);
+
+            res.status(400).json({
+                success: false, 
+                message: getErrorMessage(err)
+            })
         }
         else
         {
-            // refresh the book list
-            res.redirect('/inventory/list');
+            res.status(200).json({
+                success: true, 
+                message: "item successfuly removed"
+            })
         }
     });
 }

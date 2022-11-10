@@ -8,24 +8,28 @@ var express = require('express');
 var router = express.Router();
 let inventoryController = require('../controllers/inventory.controller');
 
+function requireAuth(req, res, next){
+    if(!req.isAuthenticated()){
+        // req.isAuthenticated -> checks if session is authenticated
+        req.session.url = req.originalUrl;
+        return res.redirect('/users/signin');
+    }
+    next();
+}
+
 /* GET users listing. */
 router.get('/list', inventoryController.inventoryList);
 
-// Routers for edit
-router.get('/edit/:id', inventoryController.displayEditPage);
+
 // router for edit views
-router.post('/edit/:id', inventoryController.processEditPage);
+router.put('/edit/:id', inventoryController.processEdit);
 // router for controller logic for edit
 
-
-/* GET Route for displaying the Add page - CREATE Operation */
-router.get('/add', inventoryController.displayAddPage);
-
 /* POST Route for processing the Add page - CREATE Operation */
-router.post('/add', inventoryController.processAddPage);
+router.post('/add', inventoryController.processAdd);
 
 
 // Route for Delete
-router.get('/delete/:id', inventoryController.performDelete);
+router.delete('/delete/:id', inventoryController.performDelete);
 
 module.exports = router;
