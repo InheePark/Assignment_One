@@ -9,6 +9,8 @@ let atlasDB = "mongodb+srv://dbuser:dbuser@cluster005.asvptdk.mongodb.net/produc
 // require username, password, and database name for the database
 // one database has many collections
 
+let config = require('./config');
+
 let mongoose = require('mongoose');
 // mongoose module
 // a npm module used to connect db to app
@@ -17,7 +19,7 @@ let mongoose = require('mongoose');
 // this function is to connect the app to the mongodb database using mongoose module
 module.exports = function(){
     
-    mongoose.connect(atlasDB);
+    mongoose.connect(config.ATLASDB);
     // connecting to mongoose with the string provided
 
     // functions write on console about connection

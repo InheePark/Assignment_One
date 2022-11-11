@@ -12,12 +12,38 @@ const LocalStrategy = require('passport-local').Strategy;
 // local database 
 const User = require('../models/user');
 
+// used to extract JWT data
+const ExtractJWT = require('passport-jwt').ExtractJwt;
+// used to authenticate users with JWT
+const JWTstrategy = require('passport-jwt').Strategy;
+const config  = require('./config');
+
 // module we will export
 module.exports = function() {
     console.log('===> localStorage function'); 
 
+    // passport we will use when auth tokens
+    passport.use(
+        'tokencheck',
+        new JWTstrategy(
+            {
+                secretOrKey: config.SECRETKEY,
+                jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+            },
+            async (token, done) => {
+                try {
+                    console.log(token);
+                    return done(null, token.payload);
+                } catch (error) {
+                    console.log(error);
+                    done(error);
+                }
+            }
+        )
+    );
+
     // we will locally authenticate with passport module
-    passport.use(new LocalStrategy(authLocal));
+    passport.use('login', new LocalStrategy(authLocal));
 };
 
 // authenticate function 
