@@ -7,6 +7,7 @@ October 21, 2022
 var express = require('express');
 var router = express.Router();
 let inventoryController = require('../controllers/inventory.controller');
+let passport = require('passport');
 
 function requireAuth(req, res, next){
     if(!req.isAuthenticated()){
@@ -17,19 +18,18 @@ function requireAuth(req, res, next){
     next();
 }
 
+// middleware passport.authenticate('tokencheck', {session: false})
+// module passport.authenticate -> we can authenticate users using 'tokencheck'
+// {session: false} -> backend has no session
+
 /* GET users listing. */
-router.get('/list', inventoryController.inventoryList);
-
-
-// router for edit views
-router.put('/edit/:id', inventoryController.processEdit);
+router.get('/list', passport.authenticate('tokencheck', {session: false}), inventoryController.inventoryList);
+router.put('/edit/:id', passport.authenticate('tokencheck', {session: false}), inventoryController.processEdit);
 // router for controller logic for edit
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post('/add', inventoryController.processAdd);
-
-
+router.post('/add', passport.authenticate('tokencheck', {session: false}), inventoryController.processAdd);
 // Route for Delete
-router.delete('/delete/:id', inventoryController.performDelete);
+router.delete('/delete/:id', passport.authenticate('tokencheck', {session: false}), inventoryController.performDelete);
 
 module.exports = router;
